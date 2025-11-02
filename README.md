@@ -1,4 +1,4 @@
-# Oliver Wyman Web Developer Assessment
+# OW Web Developer Assessment
 
 ## Structure 
 This submission includes two independent solutions:
