@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0B1D2A;
+}
+
+#globe-container {
+  position: relative;
+  width: 1200px;
+  height: 1000px;
+  background: #111111;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#pins-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.pin {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pin span {
+  color: white;
+  font-size: 1rem;
+  margin-left: 12px;
+  white-space: nowrap;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5)
+}

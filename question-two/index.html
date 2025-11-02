@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Radar Chart</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="header">
+          <h2>Interactive Radar Chart</h2>
+    </div>
+    <div class="main-content">
+      <label for="city-option">Selected City: </label>
+      <select id="city-option"></select>
+    </div>
+    <input type="hidden" id="selected-city" value="Warsaw" />
+    <div class="chart-container">
+      <canvas id="radar-chart"></canvas>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+</html>
