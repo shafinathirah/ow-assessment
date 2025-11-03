@@ -32,7 +32,26 @@ Open each file using any local server (e.g. VSCode Live Server Extension)
 - Dynamically displays data based on the hidden input's `city_name`.
 - Shows three legends: Global, Region, and City.
 - Labels and legends are dynamically pulled from the dataset.
-- Chart updates automatically when dropdown selection changes.
+- Chart updates automatically based on query parameters in the URL.
+
+### Passing Query Parameters
+
+You can set the city displayed on the radar chart by adding a `city_name` query parameter in the URL
+
+**Format:**
+
+index.html?city_name=<city-name>
+
+**Examples:**
+
+| City | URL |
+|------|-----|
+| Kuala Lumpur | `http://127.0.0.1:5500/question-two/index.html?city_name=kuala%20lumpur` |
+| Mexico | `http://127.0.0.1:5500/question-two/index.html?city_name=mexico%20city` |
+
+> **Note:**  
+> - The default city is **Warsaw**.  
+> - If the `city_name` parameter is missing or misspelled, the chart will automatically fall back to **Warsaw**.  
 
 ### Built With
 - HTML5

@@ -1,4 +1,4 @@
-var dataIndex = {
+const DATA_INDEX = {
   chartConfig: [
     {
       labels: [
@@ -38,28 +38,40 @@ var dataIndex = {
   ],
 };
 
-const selectedCity = document.getElementById('city-option')
 const hiddenInput = document.getElementById("selected-city");
 const ctx = document.getElementById("radar-chart");
+let chartInstance;
 
-let chartInstance
+const getCityName = () => {
+  const inputCity = hiddenInput.value.trim();
+  if (inputCity) return inputCity;
 
-dataIndex.chartData.forEach((item) => {
-    const option = document.createElement('option')
-    option.value = item.city_name
-    option.textContent = item.city_name
-    selectedCity.appendChild(option)
-})
+  const urlParams = new URLSearchParams(window.location.search);
+  const cityParam = urlParams.get("city_name");
 
-function renderChart(cityName) {
-    const dataItem = dataIndex.chartData.find((item) => item.city_name === cityName)
+  if (!cityParam) return "Warsaw";
 
-    if (!dataItem) return
-    
-    const labels = dataIndex.chartConfig[0].labels
+  const found = DATA_INDEX.chartData.find(
+    (item) => item.city_name.toLowerCase() === cityParam.toLowerCase()
+  );
+
+  return found ? found.city_name : "Warsaw";
+};
+
+const renderChart = (cityName) => {
+  const dataItem = DATA_INDEX.chartData.find(
+    (item) => item.city_name === cityName
+  );
+
+  if (!dataItem) {
+    console.warn(`City "${cityName}" not found in dataset.`);
+    return;
+  }
+
+  const labels = DATA_INDEX.chartConfig[0].labels;
 
   const chartData = {
-    labels: labels,
+    labels,
     datasets: [
       {
         label: "Global",
@@ -84,9 +96,10 @@ function renderChart(cityName) {
       },
     ],
   };
-    
-    const options = {
+
+  const options = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       r: {
         beginAtZero: true,
@@ -102,21 +115,12 @@ function renderChart(cityName) {
         text: `Radar Chart for ${cityName}`,
       },
     },
-    }
-    
-    if (chartInstance) chartInstance.destroy()
-    
-    chartInstance = new Chart(ctx, {
-        type: "radar",
-        data: chartData,
-        options: options
-    })
-}
+  };
 
-renderChart(hiddenInput.value)
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(ctx, { type: "radar", data: chartData, options });
+};
 
-selectedCity.addEventListener("change", (e) => {
-    const selectedCity = e.target.value
-    hiddenInput.value = selectedCity
-    renderChart(selectedCity)
-})
+const cityName = getCityName();
+hiddenInput.value = cityName;
+renderChart(cityName);
