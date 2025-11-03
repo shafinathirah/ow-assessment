@@ -9,8 +9,8 @@ body {
 
 #globe-container {
   position: relative;
-  width: 1200px;
-  height: 1000px;
+  width: 900px;
+  height: 700px;
   background: #111111;
   border-radius: 10px;
   overflow: hidden;
